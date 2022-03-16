@@ -1,0 +1,36 @@
+<!-- this file will inherit the template we wrote in prelogin-layout page -->
+<!-- we want this page to extend the template by: -->
+
+{% from 'form_helper.html' import displayField %}
+
+{% extends "prelogin-layout.html" %}
+
+{% block title %}Registration {% endblock %}
+
+{% block content %}
+  <h1>Get started</h1>
+
+<!-- action will perform the action when submit button is clicked.
+Here we take the user back to index function defined in application.py -->
+  <form action="{{url_for('index')}}", method="POST">
+
+    {{ displayField(form.username, 'Username', autocomplete="off", autofocus=true)}}
+    {{ displayField(form.password, 'Password')}}
+    {{ displayField(form.confirm_pswd, 'Confirm Password')}}
+
+    <div>
+      <!-- here we just use the submit button defined in wtform_fields file -->
+      {{form.submit_button}}
+    </div>
+
+
+<!-- csrf = cross site request attack, is an attack where
+malicious users can make the server think that the request is coming from a valid user of the website.
+flask-wtforms provides a way to protect against csrf attacks by using : -->
+
+    {{form.csrf_token }}
+
+<!-- we just have a add a token. this is a hidden tag i.e, it'll not be visible to the users.
+by default this tag will use app's secret_key we defined. -->
+  </form>
+{% endblock %}

@@ -1,0 +1,16 @@
+<!-- this is a template for all html pages -->
+<!-- flask has jinja which uses a template to copy it to many pages -->
+<!-- each page will have a unique title -->
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+
+    {% endblock %}
+  </body>
+</html>
